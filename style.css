@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #0048ff, #00d4ff);
+  --text: #0b0b0b;
+  --white: #ffffff;
+  --card-bg: #fdfdfd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  color: var(--white);
+  padding: 3rem 1rem 2rem;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+header h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.upload-card {
+  background: var(--card-bg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  animation: slideUp 1s ease-out;
+}
+
+.upload-card h2 {
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+input[type="file"] {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  border: 2px dashed #007bff;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #f8f9ff;
+}
+
+button {
+  background: var(--bg-gradient);
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0078ff, #00b3ff);
+}
+
+#result {
+  margin-top: 2rem;
+  width: 85%;
+  max-width: 700px;
+  background: #ffffffcc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  line-height: 1.7;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  color: var(--white);
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* ✨ Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fadeIn 1.2s ease; }
+.slide-up { animation: slideUp 1.2s ease; }
