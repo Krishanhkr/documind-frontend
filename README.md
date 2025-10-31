@@ -2,6 +2,8 @@
 
 Beautiful, modern, blue-gradient interface for the DocuMind AI PDF Summarizer.
 
+![DocuMind AI Preview](./preview.png)
+
 ### 🌐 Live Demo
 👉 [https://documind-frontend.vercel.app](https://documind-frontend.vercel.app)
 
