@@ -1,29 +1,28 @@
-const uploadBtn = document.getElementById("uploadBtn");
-const fileInput = document.getElementById("fileInput");
-const resultDiv = document.getElementById("result");
+// -------------------------------
+// DocuMind AI Frontend Script
+// Author: Krishan Hkr © 2025
+// -------------------------------
 
-// Replace this URL with your Render backend endpoint:
-const API_BASE = "https://documind-ai.onrender.com";
+// Select elements
+const uploadBtn = document.querySelector("button");
+const loader = document.getElementById("loader");
 
-uploadBtn.addEventListener("click", async () => {
-  const file = fileInput.files[0];
-  if (!file) return alert("Please select a PDF file first!");
+// Safety check (in case elements not found)
+if (uploadBtn && loader) {
+  uploadBtn.addEventListener("click", () => {
+    // Show loader animation
+    loader.classList.remove("hidden");
 
-  const formData = new FormData();
-  formData.append("file", file);
+    // Simulate AI processing delay
+    setTimeout(() => {
+      loader.classList.add("hidden");
 
-  resultDiv.innerHTML = "<p>⏳ Processing your PDF...</p>";
+      // For now, simulate success
+      alert("✨ AI Summary ready! (replace with your actual function)");
+    }, 3000);
+  });
+} else {
+  console.error("⚠️ Elements not found — check HTML IDs and class names!");
+}
 
-  try {
-    const res = await fetch(`${API_BASE}/upload`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    resultDiv.innerHTML = `<h3>📄 Summary:</h3><p>${data.summary}</p>`;
-  } catch (err) {
-    console.error(err);
-    resultDiv.innerHTML = "<p style='color:red'>❌ Error: Could not generate summary.</p>";
-  }
-});
+// End of Script.js
