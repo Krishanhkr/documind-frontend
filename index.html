@@ -3,36 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DocuMind AI – Smart PDF Summarizer</title>
-  <meta name="description" content="Summarize your PDFs instantly with AI-powered intelligence. Built by Krishan Hkr." />
+  <title>DocuMind AI</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="fade-in">
-    <h1>🧠 DocuMind AI</h1>
-    <p>Smart. Fast. Reliable AI Summaries for PDFs</p>
-  </header>
+  <div class="container">
+    <div class="main-card">
+      <img src="./preview.png" alt="DocuMind AI Logo" class="logo" />
+      <h1>DocuMind AI</h1>
+      <p>Smart PDF Summarizer</p>
 
-  <main>
-    <section class="upload-card slide-up">
-      <h2>Upload your PDF to Summarize</h2>
-      <input type="file" id="fileInput" accept=".pdf" />
-      <button id="uploadBtn">Summarize Now</button>
-      <!-- Loader Section -->
-<div id="loader" class="loader hidden">
-  <div class="dots">
-    <span></span><span></span><span></span><span></span>
+      <input type="file" id="fileInput" hidden />
+      <button id="uploadBtn">Upload Document</button>
+
+      <!-- ChatGPT-style rotating loader -->
+      <div id="loader" class="loader hidden">
+        <div class="ring"></div>
+        <p>AI is thinking...</p>
+      </div>
+    </div>
   </div>
-  <p>AI is thinking...</p>
-</div>
-
-    </section>
-
-    <section id="result" class="fade-in"></section>
-  </main>
-
-  <footer>© 2025 Krishan Hkr | Powered by DocuMind AI</footer>
-
   <script src="script.js"></script>
 </body>
 </html>

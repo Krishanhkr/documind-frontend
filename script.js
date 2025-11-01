@@ -1,28 +1,33 @@
-// -------------------------------
-// DocuMind AI Frontend Script
+// --------------------------------------
+// DocuMind AI | Frontend Interaction JS
 // Author: Krishan Hkr © 2025
-// -------------------------------
+// --------------------------------------
 
-// Select elements
-const uploadBtn = document.querySelector("button");
+const uploadBtn = document.getElementById("uploadBtn");
+const fileInput = document.getElementById("fileInput");
 const loader = document.getElementById("loader");
 
-// Safety check (in case elements not found)
-if (uploadBtn && loader) {
-  uploadBtn.addEventListener("click", () => {
-    // Show loader animation
-    loader.classList.remove("hidden");
+// Hide loader initially
+loader.classList.add("hidden");
 
-    // Simulate AI processing delay
+// Button click => trigger file input
+uploadBtn.addEventListener("click", () => fileInput.click());
+
+// When user selects a file
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length > 0) {
+    // Show rotating loader
+    loader.classList.remove("hidden");
+    uploadBtn.disabled = true;
+    uploadBtn.textContent = "Processing...";
+
+    // Simulate AI summarization
     setTimeout(() => {
       loader.classList.add("hidden");
-
-      // For now, simulate success
-      alert("✨ AI Summary ready! (replace with your actual function)");
-    }, 3000);
-  });
-} else {
-  console.error("⚠️ Elements not found — check HTML IDs and class names!");
-}
-
-// End of Script.js
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = "Upload Document";
+      alert(`✨ AI Summary ready for: ${fileInput.files[0].name}`);
+      fileInput.value = ""; // reset
+    }, 3500);
+  }
+});
