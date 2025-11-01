@@ -1,28 +1,19 @@
-# 💙 DocuMind AI – Frontend
+# DocuMind Frontend
 
-Beautiful, modern, blue-gradient interface for the DocuMind AI PDF Summarizer.
+Blue-gradient, glass-style DocuMind AI frontend (static).  
+Connects to a backend API (optional) for actual summarization.
 
-![DocuMind AI Preview](./preview.png)
+## Files
+- `index.html`
+- `style.css`
+- `script.js`
+- `preview.png` (optional but recommended)
 
-### 🌐 Live Demo
-👉 [https://documind-frontend.vercel.app](https://documind-frontend.vercel.app)
+## Deploy to Vercel
+1. Push this repo to GitHub.
+2. On Vercel: Import Project → Framework Preset: **Other** → Root Dir: *blank* → Build & Output: leave blank.
+3. Deploy. (Static site — no build command required.)
 
-### ⚙️ Backend
-Powered by Flask API on Render:  
-`https://documind-ai.onrender.com`
-
-### 🚀 Tech Stack
-- HTML5, CSS3, JavaScript
-- Responsive, animated design
-- Hosted on Vercel
-- API integration with Flask backend
-
-### 📦 Deployment Steps
-1. Push this repo to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. “Add New Project” → Import GitHub repo
-4. Deploy 🚀
-
-### 👤 Author
-**Krishan Hkr**  
-© 2025 Krishan Hkr
+## Notes
+- To use a real backend, replace the simulated section in `script.js` with a `fetch()` to your API endpoint.
+- Place `preview.png` at project root for Open Graph / README preview.

@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DocuMind AI</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DocuMind AI — Smart PDF Summarizer</title>
+  <meta name="description" content="Upload PDFs and get instant AI-powered summaries. Built by Krishan Hkr." />
+  <!-- Open Graph (update preview.png path after uploading preview.png) -->
+  <meta property="og:title" content="DocuMind AI — Smart PDF Summarizer" />
+  <meta property="og:description" content="Upload PDFs and get instant AI-powered summaries. Built by Krishan Hkr." />
+  <meta property="og:image" content="/preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="main-card">
-      <img src="./preview.png" alt="DocuMind AI Logo" class="logo" />
-      <h1>DocuMind AI</h1>
-      <p>Smart PDF Summarizer</p>
-
-      <input type="file" id="fileInput" hidden />
-      <button id="uploadBtn">Upload Document</button>
-
-      <!-- ChatGPT-style rotating loader -->
-      <div id="loader" class="loader hidden">
-        <div class="ring"></div>
-        <p>AI is thinking...</p>
+  <main class="page">
+    <section class="card" role="region" aria-labelledby="app-title">
+      <div class="brand">
+        <!-- preview.png optional: if absent, CSS hides the img gracefully -->
+        <img src="./preview.png" alt="DocuMind AI Logo" class="logo" onerror="this.style.display='none'"/>
+        <h1 id="app-title">DocuMind AI</h1>
+        <p class="tagline">Smart. Fast. Reliable AI Summaries for PDFs</p>
       </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+
+      <div class="controls">
+        <input type="file" id="fileInput" accept=".pdf" hidden />
+        <button id="uploadBtn" aria-label="Upload PDF to summarize">Upload Document</button>
+      </div>
+
+      <!-- Rotating AI ring loader (hidden by default) -->
+      <div id="loader" class="loader hidden" aria-live="polite" aria-hidden="true">
+        <div class="ring" role="img" aria-label="Processing"></div>
+        <p class="loader-text">AI is thinking... <span class="loader-dot">.</span></p>
+      </div>
+
+      <div id="result" class="result" aria-live="polite"></div>
+    </section>
+
+    <footer class="footer">© 2025 Krishan Hkr</footer>
+  </main>
+
+  <script src="./script.js" defer></script>
 </body>
 </html>
