@@ -69,3 +69,42 @@ function showResult(text) {
     .replace(/\n/g, '<br>');
   resultBox.innerHTML = `<strong>Summary</strong><div style="margin-top:8px;line-height:1.6">${safeHtml}</div>`;
 }
+// --- inside fileInput.addEventListener('change') ---
+const fileInput = document.getElementById("file-input");
+const resultDiv = document.getElementById("result");
+const loader = document.querySelector(".loader");
+
+fileInput.addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  resultDiv.textContent = "";
+  loader.style.display = "block";
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const response = await fetch("https://documind-backend-2.onrender.com/analyze", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Server error. Please try again.");
+    }
+
+    const data = await response.json();
+    loader.style.display = "none";
+
+    if (data.summary) {
+      resultDiv.innerHTML = `<h3>📄 Summary:</h3><p>${data.summary}</p>`;
+    } else {
+      resultDiv.innerHTML = `<p>⚠️ No summary generated.</p>`;
+    }
+  } catch (error) {
+    loader.style.display = "none";
+    resultDiv.innerHTML = `<p>❌ Error connecting to backend: ${error.message}</p>`;
+  }
+});
+
