@@ -2,34 +2,34 @@
 // DOCUMIND AI FRONTEND SCRIPT
 // ---------------------------
 
-// Select DOM elements
-const fileInput = document.getElementById("file-input");
-const uploadBtn = document.getElementById("upload-btn");
-const resultDiv = document.getElementById("result");
-const loader = document.querySelector(".loader");
+// Selecting HTML elements (IDs matched with your HTML)
+const fileInput = document.getElementById("fileInput");
+const uploadBtn = document.getElementById("uploadBtn");
+const loader = document.getElementById("loader");
 const loaderText = document.querySelector(".loader-text");
+const resultDiv = document.getElementById("result");
 
-// Function to show rotating loader
+// Function: Show/Hide loader
 function showLoader(show = true) {
   if (show) {
-    loader.style.display = "flex";
+    loader.classList.remove("hidden");
     loaderText.textContent = "🤖 AI is thinking...";
   } else {
-    loader.style.display = "none";
+    loader.classList.add("hidden");
     loaderText.textContent = "";
   }
 }
 
-// Function to display result summary
+// Function: Show summary result
 function showResult(text) {
   resultDiv.style.opacity = "0";
   setTimeout(() => {
-    resultDiv.innerHTML = `<h3>📄 Summary</h3><p>${text}</p>`;
+    resultDiv.innerHTML = `<h3>📄 Summary:</h3><p>${text}</p>`;
     resultDiv.style.opacity = "1";
   }, 300);
 }
 
-// Handle file upload + backend request
+// Function: Handle file upload & backend request
 async function handleFileUpload() {
   const file = fileInput.files[0];
   if (!file) {
@@ -44,15 +44,12 @@ async function handleFileUpload() {
   formData.append("file", file);
 
   try {
-    // ⚙️ Backend endpoint (Render)
     const response = await fetch("https://documind-backend-2.onrender.com/analyze", {
       method: "POST",
       body: formData,
     });
 
-    if (!response.ok) {
-      throw new Error(`Server responded with ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`Server responded with ${response.status}`);
 
     const data = await response.json();
     showLoader(false);
@@ -60,7 +57,7 @@ async function handleFileUpload() {
     if (data.summary) {
       showResult(data.summary);
     } else {
-      showResult("⚠️ No summary generated. Try again with a longer document.");
+      showResult("⚠️ No summary generated. Try again with another document.");
     }
   } catch (error) {
     console.error("Error:", error);
@@ -69,17 +66,13 @@ async function handleFileUpload() {
   }
 }
 
-// Event listeners
-uploadBtn.addEventListener("click", handleFileUpload);
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length > 0) {
-    uploadBtn.textContent = "Summarize Now 🚀";
-  } else {
-    uploadBtn.textContent = "Upload PDF";
-  }
-});
+// Event: Click on Upload Button
+uploadBtn.addEventListener("click", () => fileInput.click());
 
-// Smooth fade-in animations for page load
+// Event: When file is selected
+fileInput.addEventListener("change", handleFileUpload);
+
+// Fade-in animation after DOM loads
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("loaded");
 });
